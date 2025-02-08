@@ -1,0 +1,51 @@
+// marker popover
+.popover {
+  background: rgba(3, 16, 37, 0.70);
+  backdrop-filter: blur(11.249998092651367px);
+  background-size: 100% 100%;
+  // transform: translate(-50%, -100%);
+  position: relative;
+  text-align: left;
+  padding: 12px;
+}
+
+.title {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+  padding-bottom: 12px;
+  color: white;
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    display: block;
+    border-left: 4px solid transparent;
+    border-bottom: 2px solid #D8D8D8;
+    border-right: 16px solid #D8D8D8;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.popoverItem {
+  vertical-align: baseline;
+  color: white;
+  .label {
+    padding: 8px 0;
+    white-space: nowrap;
+  }
+  .value {
+    word-break: break-all;
+    // padding-left: 8px;
+    width: 90%;
+  }
+}
+
+.footer {
+  text-align: right;
+  color: #0FF;
+  span:hover {
+    cursor: pointer;
+  }
+}
