@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-export default function useScale({ width, height }) {
-  const [scale, setScale] = useState();
+export default function useScale({ width, height, getTarget }) {
+  // const [scale, setScale] = useState();
 
   useEffect(() => {
     const getScale = () => {
@@ -11,12 +11,14 @@ export default function useScale({ width, height }) {
       const heightScale = screenHeight / height;
       // 取较小值，防止内容超出屏幕
       const scale = Math.min(widthScale, heightScale);
-      setScale(scale);
+      const target = getTarget();
+      target.style.transform = `scale(${scale})`;
+      target.style.transformOrigin = 'left top';
     }
     getScale();
     document.addEventListener('resize', getScale);
 
     return () => document.removeEventListener('resize', getScale)
   }, []);
-  return scale;
+  // return scale;
 }
