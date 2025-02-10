@@ -15,7 +15,7 @@ const markerCls = cxs({
     borderRadius: '50%',
     display: 'inline-block'
   }
-})
+});
 export default function MapboxPro() {
   const [points, setPoints] = useState([]);
   return <BaseMap
