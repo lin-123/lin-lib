@@ -1,1 +1,3 @@
-// export { default as Foo } from './Foo';
+import DynamicNum from "./ScreenComp/DynamicNum";
+
+export { DynamicNum }

@@ -72,12 +72,14 @@
   },
   "dependencies": {
     "@vis.gl/react-maplibre": "^8.0.1",
+    "ahooks": "^3.8.4",
     "antd": "^5.23.4",
     "classnames": "^2.5.1",
     "cxs": "^6.2.0",
+    "dayjs": "^1.11.13",
     "echarts": "^5.6.0",
     "echarts-for-react": "^3.0.2",
     "maplibre-gl": "^5.1.0",
-    "uc-fun": "^1.0.5"
+    "uc-fun": "^1.2.0"
   }
 }

@@ -1,7 +1,6 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import * as echarts from 'echarts';
 import { Empty } from 'antd';
-import { px2rem } from '@/util/px2rem';
 import { sleep } from 'uc-fun';
 import { fontSize, myTheme } from './myTheme.js';
 
@@ -28,7 +27,7 @@ const CommonChart = ({
     }
     // 监听窗口大小变化，调整图表大小
     window.addEventListener('resize', chartInstance.resize);
-    sleep(1).then(chartInstance.resize);
+    sleep(10).then(chartInstance.resize);
 
     // action = 'on|off'
     const dealEvents = (action) => {

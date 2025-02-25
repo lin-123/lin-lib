@@ -9,7 +9,8 @@
     "paths": {
       "@@/*": [".dumi/tmp/*"],
       "lin-lib": ["src"],
-      "lin-lib/*": ["src/*", "*"]
+      "lin-lib/*": ["src/*", "*"],
+      "@/*": ["src/*"],
     }
   },
   "include": [".dumirc.ts", "src/**/*"]
