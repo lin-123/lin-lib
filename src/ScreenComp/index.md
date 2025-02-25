@@ -8,6 +8,3 @@ export default () => {
   return <DynamicNum num={100} />
 }
 ```
-
-## SearchTable
-<code src='./SearchTable/demo.jsx'></code>
