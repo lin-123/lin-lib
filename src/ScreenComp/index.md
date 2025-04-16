@@ -8,3 +8,12 @@ export default () => {
   return <DynamicNum num={100} />
 }
 ```
+
+## 水印
+```jsx
+import Watermark from './Watermark';
+
+export default () => {
+  return <Watermark text="Watermark Watermark" />
+}
+```
