@@ -4,16 +4,17 @@
 import { useRef, useEffect } from "react";
 import styles from './index.module.less';
 
-export default function Watermark({ text }) {
+export default function Watermark({ size, text, fontSize, color }) {
   const elRef = useRef();
 
   useEffect(() => {
     if (!text) return;
-
     generateWatermark({
-      word: text,
+      text,
+      size,
       el: elRef.current,
-      fontSize: 40,
+      fontSize,
+      color,
     });
   }, [text]);
 
@@ -25,27 +26,61 @@ export default function Watermark({ text }) {
      * @param {string} username - 用户姓名
      * @param {string} canvasSize - Canvas 尺寸，如 '200x100'
      * @param {string} backgroundColor - 背景颜色
-     * @param {string} textColor - 文本颜色
+     * @param {string} color - 文本颜色
      * @param {number} fontSize - 字体大小
      */
-function generateWatermark({ word, textColor = '#e0dcdc92', fontSize = 28, el }) {
+function generateWatermark({
+  size = 200,
+  text,
+  color = '#e0dcdc92',
+  fontSize = 16,
+  el
+}) {
   const canvas = document.createElement('canvas');
-  const width = word.length * fontSize;
-  const height = width;
+  // canvas.style.border = '1px solid #ccc';
 
-  canvas.width = width;
-  canvas.height = height;
   const ctx = canvas.getContext('2d');
 
-  // 设置文本样式
-  ctx.font = `${fontSize}px Arial` ;
-  ctx.fillStyle = textColor;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
+  // 设置文字内容和样式
+  // const text = "第一行\n这是第二行\n这是第三行";
+  const lineHeight = fontSize * 1.5; // 行高
+  // 计算每行文字的高度和总高度
+  const lines = text.split('\n');
+  debugger;
+  const totalHeight = lines.length * lineHeight;
 
-  // 绘制文本
-  ctx.rotate((-45) * Math.PI / 180); // 旋转角度
-  ctx.fillText(word, fontSize, height - fontSize);
+  canvas.width = size; // Canvas 宽度
+  canvas.height = size; // Canvas 高度
+
+  ctx.font = `${fontSize}px Arial`;
+  ctx.textAlign = "center"; // 水平居中对齐
+  ctx.textBaseline = "middle"; // 垂直居中对齐
+  ctx.fillStyle = color;
+
+
+  // 清除 Canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // 保存初始状态
+  ctx.save();
+
+  ctx.translate(size / 2, size / 2);
+  // 旋转 Canvas 45 度（以弧度为单位）
+  const rotationAngle = - Math.PI / 4; // 45度
+  ctx.rotate(rotationAngle);
+
+  // 计算文字的起始 Y 位置，使整体文字在旋转后居中
+  const startY = -totalHeight / 2 + lineHeight / 2;
+
+  // 绘制多行文字
+  lines.forEach((line, index) => {
+      const y = startY + index * lineHeight;
+      // const x = (size - ctx.measureText(line).width) / 2;
+      ctx.fillText(line, 0, y);
+  });
+
+  // 恢复 Canvas 状态
+  ctx.restore();
 
   // 将 Canvas 转换为 Data URL
   const dataURL = canvas.toDataURL();

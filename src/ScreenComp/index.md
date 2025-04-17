@@ -14,6 +14,11 @@ export default () => {
 import Watermark from './Watermark';
 
 export default () => {
-  return <Watermark text="Watermark Watermark" />
+  return <Watermark
+    text={`第一行\n第二行222\n第三行33333`}
+    size={400}
+    fontSize={18}
+    color="#e0dcdc92"
+  />
 }
 ```
